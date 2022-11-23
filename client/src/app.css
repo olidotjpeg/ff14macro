@@ -23,5 +23,13 @@
 }
 
 .ffxiv-text {
-  font-family: 'FFXIV';
+  font-family: Arial, 'FFXIV';
+}
+
+:root {
+  --primary-color: #4ECCA3;
+  --background-color: #232931;
+  --secondary-color: #CC634E;
+  --text-color: #EEEEEE;
+  --text-color-dark: #232931;
 }

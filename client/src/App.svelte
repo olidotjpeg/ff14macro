@@ -1,4 +1,8 @@
 <script lang="ts">
+  import Input from "./lib/Input.svelte";
+import List from "./lib/List.svelte";
+
+  export let state = false;
   export let macros = [];
 
   fetch('http://localhost:8000/macros').then((response) => response.json()).then(res => {
@@ -9,20 +13,23 @@
     macros = res;
   });
 
+  function handleState(newState) {
+    state = newState;
+  }
+
 </script>
 
 <main>
-  <h1>FF14 macro</h1>
-  <ul>
-    {#each macros as macro}
-      <li>
-        <p>{macro.name}</p>
-        {#each macro.description as line}
-          <pre class="ffxiv-text">{line}</pre>
-        {/each}
-      </li>
-    {/each}
-  </ul>
+  <button on:click={() => handleState(false)}>Add</button>
+  <button on:click={() => handleState(true)}>Search</button>
+
+  <br/>
+
+  {#if !state}
+    <Input />
+  {:else}
+    <List macros={macros} />
+  {/if}
 </main>
 
 <style>
